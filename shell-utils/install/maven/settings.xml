@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- for full reference, see also http://maven.apache.org/ref/3.2.3/maven-settings/settings.html -->
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+    <!--<localRepository>C:\Users\xiangwen01\.m2\repository</localRepository> -->
+   <!-- <localRepository>/mnt/share/workplace/maven/repository</localRepository> -->
+   <localRepository>/var/workplace/share/maven/repository</localRepository> 
+    <servers>
+        <server>
+            <id>opendaylight-release</id>
+            <username>admin</username>
+            <password>admin123</password>
+        </server>
+        <server>
+            <id>opendaylight-snapshots</id>
+            <username>admin</username>
+            <password>admin123</password>
+        </server>
+    </servers>
+
+
+    <mirrors>
+        <mirror>
+            <id>nexus</id>
+            <mirrorOf>*</mirrorOf>
+            <url>http://10.69.67.4:8081/repository/inspur_group/</url>
+        </mirror>
+    </mirrors>
+
+
+    <profiles>
+        <profile>
+            <id>opendaylight-release</id>
+            <repositories>
+                <repository>
+                    <id>opendaylight-mirror</id>
+                    <name>opendaylight-mirror</name>
+                    <url>http://10.69.67.4:8081/repository/maven-releases/</url>
+                    <releases>
+                        <enabled>true</enabled>
+                        <updatePolicy>never</updatePolicy>
+                    </releases>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>opendaylight-mirror</id>
+                    <name>opendaylight-mirror</name>
+                    <url>http://10.69.67.4:8081/repository/maven-releases/</url>
+                    <releases>
+                        <enabled>true</enabled>
+                        <updatePolicy>never</updatePolicy>
+                    </releases>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+        <profile>
+            <id>opendaylight-snapshots</id>
+            <repositories>
+                <repository>
+                    <id>opendaylight-snapshot</id>
+                    <name>opendaylight-snapshot</name>
+                    <url>http://10.69.67.4:8081/repository/maven-snapshots/</url>
+                    <releases>
+                        <enabled>false</enabled>
+                        <updatePolicy>always</updatePolicy>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                        <updatePolicy>always</updatePolicy>
+                    </snapshots>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>opendaylight-snapshot</id>
+                    <name>opendaylight-snapshot</name>
+                    <url>http://10.69.67.4:8081/repository/maven-snapshots/</url>
+                    <releases>
+                        <enabled>false</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+    </profiles>
+
+    <activeProfiles>
+        <activeProfile>opendaylight-release</activeProfile>
+        <activeProfile>opendaylight-snapshots</activeProfile>
+    </activeProfiles>
+
+</settings>
